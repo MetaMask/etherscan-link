@@ -1,6 +1,7 @@
 module.exports = function (network) {
-  const net = parseInt(network)
-  let prefix
+  var net = parseInt(network)
+  var prefix;
+
   switch (net) {
     case 1: // main net
       prefix = ''
