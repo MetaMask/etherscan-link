@@ -2,12 +2,12 @@
 
 ## Installation
 
-`npm install etherscan-link -S`
+`npm install '@metamask/etherscan-link' -S`
 
 ## Usage
 
 ```javascript
-const etherscanLink = require('etherscan-link')
+const etherscanLink = require('@metamask/etherscan-link')
 
 const networkId = '1'
 const account = '0xFDEa65C8e26263F6d9A1B5de9555D2931A33b825'
