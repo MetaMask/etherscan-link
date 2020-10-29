@@ -1,20 +1,21 @@
 {
   "name": "@metamask/etherscan-link",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A library for generating etherscan links.",
-  "main": "index.js",
+  "main": "dist/index.js",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
   "files": [
-    "account-link.js",
-    "explorer-link.js",
-    "index.js",
-    "prefix-for-network.js"
+    "dist/account-link.js",
+    "dist/explorer-link.js",
+    "dist/index.js",
+    "dist/prefix-for-network.js"
   ],
   "scripts": {
-    "test": "mocha"
+    "build": "rm dist/* && tsc",
+    "test": "yarn build && mocha"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,7 @@
   },
   "homepage": "https://github.com/MetaMask/etherscan-link#readme",
   "devDependencies": {
-    "mocha": "^7.1.1"
+    "mocha": "^7.1.1",
+    "typescript": "^4.0.5"
   }
 }
