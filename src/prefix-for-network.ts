@@ -1,4 +1,4 @@
-export = function (network: string): string {
+export = function getPrefixForNetwork(network: string): string {
   const net = parseInt(network)
   let prefix;
 
