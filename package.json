@@ -8,10 +8,7 @@
     "access": "public"
   },
   "files": [
-    "dist/account-link.js",
-    "dist/explorer-link.js",
-    "dist/index.js",
-    "dist/prefix-for-network.js"
+    "dist/"
   ],
   "scripts": {
     "build": "rm dist/* && tsc",
