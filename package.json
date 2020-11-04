@@ -11,8 +11,9 @@
     "dist/"
   ],
   "scripts": {
-    "build": "rm dist/* && tsc",
-    "test": "yarn build && mocha"
+    "build": "rm -rf dist/* && tsc",
+    "test": "yarn build && mocha",
+    "prepublishOnly": "yarn test"
   },
   "repository": {
     "type": "git",
