@@ -18,5 +18,5 @@ const txLink = etherscanLink.createExplorerLink(hash, networkId)
 
 const token = '0xdac17f958d2ee523a2206206994597c13d831ec7'
 const wallet = '0x5041ed759dd4afc3a72b8192c143f72f4724081a'
-const accountLink = etherscanLink.createAccountLink(token, networkId, wallet)
+const accountLink = etherscanLink.createTokenTrackerLink(token, networkId, wallet)
 ```
