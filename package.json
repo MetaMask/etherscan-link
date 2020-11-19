@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "build": "rm -rf dist/* && tsc",
-    "test": "yarn build && mocha",
+    "test": "yarn build && mocha test",
     "prepublishOnly": "yarn test"
   },
   "repository": {
