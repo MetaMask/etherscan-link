@@ -12,7 +12,7 @@ export = function getPrefixForNetwork(network: string): string {
     case 4: // rinkeby test net
       prefix = 'rinkeby.'
       break
-    case 5: // kovan test net
+    case 5: // goerli test net
       prefix = 'goerli.'
       break
     case 42: // kovan test net
