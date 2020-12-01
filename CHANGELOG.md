@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.0] - 2020-12-01
+
+### Added
+
+- Add support for Goerli ([#26](https://github.com/MetaMask/etherscan-link/pull/26))
+
 ## [1.3.0] - 2020-11-18
 
 ### Added
