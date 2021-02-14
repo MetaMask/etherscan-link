@@ -19,7 +19,7 @@ export = function getPrefixForNetwork(network: string): string {
       prefix = 'kovan.'
       break
     default:
-      prefix = ''
+      prefix = 'other.'
   }
   return prefix
 }

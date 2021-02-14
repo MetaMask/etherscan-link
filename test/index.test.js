@@ -29,6 +29,11 @@ describe('explorer-link', function () {
     const result = createExplorerLink('foo', '3')
     assert.strictEqual(result, 'https://ropsten.etherscan.io/tx/foo', 'should handle ropsten')
   })
+
+  it('should handle have other as a prefix', function () {
+    const result = createExplorerLink('foo', '10')
+    assert.strictEqual(result, '', 'should return an empty string')
+  })
 })
 
 /**
