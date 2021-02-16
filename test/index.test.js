@@ -16,6 +16,11 @@ describe('account-link', function () {
     const result = createAccountLink('foo', '3')
     assert.strictEqual(result, 'https://ropsten.etherscan.io/address/foo', 'should handle ropsten')
   })
+
+  it('should have null as a prefix', function () {
+    const result = createAccountLink('foo', '3234')
+    assert.strictEqual(result, '', 'should return an empty string')
+  })
 })
 
 // `https://${prefix}etherscan.io/tx/${hash}`
@@ -28,6 +33,11 @@ describe('explorer-link', function () {
   it('should handle ropsten correctly', function () {
     const result = createExplorerLink('foo', '3')
     assert.strictEqual(result, 'https://ropsten.etherscan.io/tx/foo', 'should handle ropsten')
+  })
+
+  it('should have null as a prefix', function () {
+    const result = createExplorerLink('foo', '10')
+    assert.strictEqual(result, '', 'should return an empty string')
   })
 })
 
@@ -55,5 +65,10 @@ describe('token-tracker-link', function () {
   it('should handle ropsten correctly (account)', function () {
     const result = createTokenTrackerLink('foo', '3', '0xabc')
     assert.strictEqual(result, 'https://ropsten.etherscan.io/token/foo?a=0xabc', 'should handle ropsten')
+  })
+
+  it('should null has a prefix', function () {
+    const result = createTokenTrackerLink('foo', '3654', '0xabc')
+    assert.strictEqual(result, '', 'should return an empty string')
   })
 })

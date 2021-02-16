@@ -6,7 +6,8 @@ export = function getTokenTrackerLink(
   holderAddress?: string,
 ): string {
   const prefix = prefixForNetwork(network)
-  return `https://${prefix}etherscan.io/token/${tokenAddress}${
-    holderAddress ? `?a=${ holderAddress }` : ''
-  }`
+  return prefix !== null ? 
+      `https://${prefix}etherscan.io/token/${tokenAddress}${ 
+        holderAddress ? `?a=${ holderAddress }` : '' }`
+    : '';
 }
