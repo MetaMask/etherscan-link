@@ -1,4 +1,4 @@
-export = function getPrefixForNetwork(network: string): string {
+export = function getPrefixForNetwork(network: string): string | null {
   const net = parseInt(network)
   let prefix;
 
@@ -19,7 +19,7 @@ export = function getPrefixForNetwork(network: string): string {
       prefix = 'kovan.'
       break
     default:
-      prefix = 'other.'
+      prefix = null
   }
   return prefix
 }
