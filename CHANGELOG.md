@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.1] - 2021-02-16
+
+### Changed
+
+- Return an empty string for unrecognized networks ([#29](https://github.com/MetaMask/etherscan-link/pull/29))
+
 ## [1.4.0] - 2020-12-01
 
 ### Added
