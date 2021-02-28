@@ -21,6 +21,11 @@ describe('account-link', function () {
     const result = createAccountLink('foo', '3234')
     assert.strictEqual(result, '', 'should return an empty string')
   })
+
+  it('should handle customNetwork url correctly', function () {
+    const result = createAccountLink('foo', '3234', 'https://data-seed-prebsc-1-s1.binance.org:8545')
+    assert.strictEqual(result, 'https://data-seed-prebsc-1-s1.binance.org:8545/address/foo', 'should return binance testnet address url')
+  })
 })
 
 // `https://${prefix}etherscan.io/tx/${hash}`
@@ -38,6 +43,11 @@ describe('explorer-link', function () {
   it('should have null as a prefix', function () {
     const result = createExplorerLink('foo', '10')
     assert.strictEqual(result, '', 'should return an empty string')
+  })
+
+  it('should handle customNetwork url correctly', function () {
+    const result = createExplorerLink('foo', '3', 'https://data-seed-prebsc-1-s1.binance.org:8545')
+    assert.strictEqual(result, 'https://data-seed-prebsc-1-s1.binance.org:8545/tx/foo', 'should return binance testnet transaction url')
   })
 })
 
@@ -70,5 +80,10 @@ describe('token-tracker-link', function () {
   it('should null has a prefix', function () {
     const result = createTokenTrackerLink('foo', '3654', '0xabc')
     assert.strictEqual(result, '', 'should return an empty string')
+  })
+
+  it('should handle customNetwork url correctly', function () {
+    const result = createTokenTrackerLink('foo', '3', '0xabc', 'https://data-seed-prebsc-1-s1.binance.org:8545')
+    assert.strictEqual(result, 'https://data-seed-prebsc-1-s1.binance.org:8545/token/foo?a=0xabc', 'should return binance testnet token url')
   })
 })
