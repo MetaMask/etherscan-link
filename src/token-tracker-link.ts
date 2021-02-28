@@ -4,10 +4,16 @@ export = function getTokenTrackerLink(
   tokenAddress: string,
   network: string,
   holderAddress?: string,
+  customNetworkUrl?: string,
 ): string {
+  if(customNetworkUrl?.length){
+    return `${customNetworkUrl}/token/${tokenAddress}${ 
+      holderAddress ? `?a=${ holderAddress }`: ''}`;
+  } else {
   const prefix = prefixForNetwork(network)
   return prefix !== null ? 
       `https://${prefix}etherscan.io/token/${tokenAddress}${ 
         holderAddress ? `?a=${ holderAddress }` : '' }`
     : '';
+  }
 }
