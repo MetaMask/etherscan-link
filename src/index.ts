@@ -1,9 +1,12 @@
-import createExplorerLink from './explorer-link'
-import createAccountLink from './account-link'
-import createTokenTrackerLink from './token-tracker-link'
+import { createExplorerLink, createExplorerLinkForChain } from './explorer-link'
+import { createAccountLink, createAccountLinkForChain } from './account-link'
+import { createTokenTrackerLink, createTokenTrackerLinkForChain } from './token-tracker-link'
 
 export = {
   createExplorerLink,
+  createExplorerLinkForChain,
   createAccountLink,
+  createAccountLinkForChain,
   createTokenTrackerLink,
+  createTokenTrackerLinkForChain,
 }
