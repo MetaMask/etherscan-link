@@ -83,7 +83,7 @@ describe('token-tracker-link', function () {
   })
 
   it('should handle customNetwork url correctly', function () {
-    const result = createTokenTrackerLink('foo', '3', '0xabc', 'https://data-seed-prebsc-1-s1.binance.org:8545')
-    assert.strictEqual(result, 'https://data-seed-prebsc-1-s1.binance.org:8545/token/foo?a=0xabc', 'should return binance testnet token url')
+    const result = createTokenTrackerLink('foo', '3', '0xabc', 'https://data-seed-prebsc-1-s1.binance.org:8545/')
+    assert.strictEqual(result, 'https://data-seed-prebsc-1-s1.binance.org:8545/token/foo', 'should return binance testnet token url')
   })
 })

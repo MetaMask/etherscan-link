@@ -7,7 +7,8 @@ export = function getTokenTrackerLink(
   customNetworkUrl?: string,
 ): string {
   if(customNetworkUrl?.length){
-    return `${customNetworkUrl}/token/${tokenAddress}`;
+    let parsedUrl = new URL(`token/${tokenAddress}`,customNetworkUrl)
+    return parsedUrl.toString();
   } else {
   const prefix = prefixForNetwork(network)
   return prefix !== null ? 
