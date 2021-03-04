@@ -1,6 +1,7 @@
 const assert = require('assert')
 const {
   createAccountLink,
+  createCustomAccountLink,
   createExplorerLink,
   createTokenTrackerLink,
 } = require('../dist')
@@ -23,7 +24,7 @@ describe('account-link', function () {
   })
 
   it('should handle customNetwork url correctly', function () {
-    const result = createAccountLink('foo', '3234', 'https://data-seed-prebsc-1-s1.binance.org:8545')
+    const result = createCustomAccountLink('foo', 'https://data-seed-prebsc-1-s1.binance.org:8545')
     assert.strictEqual(result, 'https://data-seed-prebsc-1-s1.binance.org:8545/address/foo', 'should return binance testnet address url')
   })
 })
