@@ -1,12 +1,15 @@
-import createExplorerLink from './explorer-link'
-import { 
-  getAccountLink as createAccountLink, 
-  getCustomBlockExplorerAccountLink as createCustomAccountLink } from './account-link'
-import createTokenTrackerLink from './token-tracker-link'
+
+import { createExplorerLink, createCustomExplorerLink,  createExplorerLinkForChain } from './explorer-link'
+import { createAccountLink, createAccountLinkForChain, createCustomAccountLink } from './account-link'
+import { createTokenTrackerLink, createTokenTrackerLinkForChain } from './token-tracker-link'
 
 export = {
   createExplorerLink,
+  createCustomExplorerLink,
+  createExplorerLinkForChain,
   createAccountLink,
   createCustomAccountLink,
+  createAccountLinkForChain,
   createTokenTrackerLink,
+  createTokenTrackerLinkForChain,
 }
