@@ -5,6 +5,7 @@ const {
   createExplorerLink,
   createTokenTrackerLink,
   createExplorerLinkForChain,
+  createCustomExplorerLink,
   createAccountLinkForChain,
   createTokenTrackerLinkForChain
 } = require('../dist')
@@ -88,7 +89,7 @@ describe('explorer-link', function () {
   })
 
   it('should handle customNetwork url correctly', function () {
-    const result = createExplorerLink('foo', '3', 'https://data-seed-prebsc-1-s1.binance.org:8545')
+    const result = createCustomExplorerLink('foo', 'https://data-seed-prebsc-1-s1.binance.org:8545')
     assert.strictEqual(result, 'https://data-seed-prebsc-1-s1.binance.org:8545/tx/foo', 'should return binance testnet transaction url')
   })
 })
