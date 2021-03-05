@@ -1,6 +1,12 @@
+import prefixForChain from './prefix-for-chain';
 import prefixForNetwork from './prefix-for-network'
 
-export = function getAccountLink(address: string, network: string): string {
+export function createAccountLink(address: string, network: string): string {
   const prefix = prefixForNetwork(network)
+  return prefix !== null ? `https://${prefix}etherscan.io/address/${address}` : '';
+}
+
+export function createAccountLinkForChain(address: string, chainId: string): string {
+  const prefix = prefixForChain(chainId)
   return prefix !== null ? `https://${prefix}etherscan.io/address/${address}` : '';
 }
