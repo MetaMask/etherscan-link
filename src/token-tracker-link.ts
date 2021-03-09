@@ -8,15 +8,15 @@ export function createTokenTrackerLink(
   holderAddress?: string,
   customNetworkUrl?: string,
 ): string {
-  if(customNetworkUrl?.length){
+  if (customNetworkUrl?.length){
     const parsedUrl = addPathToUrl(customNetworkUrl, 'token', tokenAddress)
-    return parsedUrl;
+    return parsedUrl
   } else {
-  const prefix = prefixForNetwork(network)
-  return prefix !== null ? 
+    const prefix = prefixForNetwork(network)
+    return prefix !== null ? 
       `https://${prefix}etherscan.io/token/${tokenAddress}${ 
         holderAddress ? `?a=${ holderAddress }` : '' }`
-    : '';
+      : ''
   }
 }
 
