@@ -1,5 +1,6 @@
+import { addPathToUrl } from './helpers';
 import prefixForChain from './prefix-for-chain';
-import prefixForNetwork from './prefix-for-network'
+import prefixForNetwork from './prefix-for-network';
 
 export function createTokenTrackerLink(
   tokenAddress: string,
@@ -8,8 +9,8 @@ export function createTokenTrackerLink(
   customNetworkUrl?: string,
 ): string {
   if(customNetworkUrl?.length){
-    let parsedUrl = new URL(`token/${tokenAddress}`,customNetworkUrl)
-    return parsedUrl.toString();
+    let parsedUrl = addPathToUrl(customNetworkUrl, 'token', tokenAddress)
+    return parsedUrl;
   } else {
   const prefix = prefixForNetwork(network)
   return prefix !== null ? 

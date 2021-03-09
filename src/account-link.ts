@@ -1,5 +1,6 @@
+import { addPathToUrl } from './helpers';
 import prefixForChain from './prefix-for-chain';
-import prefixForNetwork from './prefix-for-network'
+import prefixForNetwork from './prefix-for-network';
 
 export function createAccountLink(address: string, network: string): string {
   const prefix = prefixForNetwork(network)
@@ -12,6 +13,6 @@ export function createAccountLinkForChain(address: string, chainId: string): str
 }
 
 export function createCustomAccountLink(address: string, customNetworkUrl: string): string {
-    let parsedUrl = new URL(`address/${address}`, customNetworkUrl)
-    return parsedUrl.toString();
+    let parsedUrl = addPathToUrl(customNetworkUrl, 'address', address)
+    return parsedUrl;
 }
