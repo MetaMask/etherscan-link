@@ -13,6 +13,6 @@ export function createAccountLinkForChain(address: string, chainId: string): str
 }
 
 export function createCustomAccountLink(address: string, customNetworkUrl: string): string {
-    let parsedUrl = addPathToUrl(customNetworkUrl, 'address', address)
-    return parsedUrl;
+  const parsedUrl = addPathToUrl(customNetworkUrl, 'address', address)
+  return parsedUrl
 }

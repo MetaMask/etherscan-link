@@ -9,7 +9,7 @@ export function createTokenTrackerLink(
   customNetworkUrl?: string,
 ): string {
   if(customNetworkUrl?.length){
-    let parsedUrl = addPathToUrl(customNetworkUrl, 'token', tokenAddress)
+    const parsedUrl = addPathToUrl(customNetworkUrl, 'token', tokenAddress)
     return parsedUrl;
   } else {
   const prefix = prefixForNetwork(network)

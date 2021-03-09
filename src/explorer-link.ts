@@ -3,9 +3,9 @@ import prefixForChain from './prefix-for-chain';
 import prefixForNetwork from './prefix-for-network';
      
 export function createCustomExplorerLink(hash: string, customNetworkUrl: string): string {
-  let parsedUrl = addPathToUrl(customNetworkUrl, 'tx', hash) 
-    return parsedUrl;
-  }
+  const parsedUrl = addPathToUrl(customNetworkUrl, 'tx', hash) 
+  return parsedUrl
+}
 
 export function createExplorerLink(hash: string, network: string): string {
   const prefix = prefixForNetwork(network)
