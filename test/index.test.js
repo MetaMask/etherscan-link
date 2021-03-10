@@ -3,9 +3,10 @@ const {
   createAccountLink,
   createCustomAccountLink,
   createExplorerLink,
-  createTokenTrackerLink,
-  createExplorerLinkForChain,
   createCustomExplorerLink,
+  createTokenTrackerLink,
+  createCustomTokenTrackerLink,
+  createExplorerLinkForChain,
   createAccountLinkForChain,
   createTokenTrackerLinkForChain
 } = require('../dist')
@@ -87,6 +88,11 @@ describe('explorer-link', function () {
       assert.strictEqual(result, '', 'should return an empty string')
     })
   })
+  
+  it('should handle customNetwork url correctly', function () {
+    const result = createExplorerLink('foo', '3',)
+    assert.strictEqual(result, 'https://ropsten.etherscan.io/tx/foo', 'should handle ropsten')
+  })
 
   it('should handle customNetwork url correctly', function () {
     const result = createCustomExplorerLink('foo', 'https://data-seed-prebsc-1-s1.binance.org:8545')
@@ -152,10 +158,10 @@ describe('token-tracker-link', function () {
       const result = createTokenTrackerLinkForChain('foo', '0xe46', '0xabc')
       assert.strictEqual(result, '', 'should return an empty string')
     })
-  })
 
-  it('should handle customNetwork url correctly', function () {
-    const result = createTokenTrackerLink('foo', '3', '0xabc', 'https://data-seed-prebsc-1-s1.binance.org:8545/')
-    assert.strictEqual(result, 'https://data-seed-prebsc-1-s1.binance.org:8545/token/foo', 'should return binance testnet token url')
+    it('should handle customNetwork url correctly', function () {
+      const result = createCustomTokenTrackerLink('foo', 'https://data-seed-prebsc-1-s1.binance.org:8545/')
+      assert.strictEqual(result, 'https://data-seed-prebsc-1-s1.binance.org:8545/token/foo', 'should return binance testnet token url')
+    })
   })
 })

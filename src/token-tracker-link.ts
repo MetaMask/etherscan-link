@@ -6,19 +6,22 @@ export function createTokenTrackerLink(
   tokenAddress: string,
   network: string,
   holderAddress?: string,
-  customNetworkUrl?: string,
 ): string {
-  if (customNetworkUrl?.length){
-    const parsedUrl = addPathToUrl(customNetworkUrl, 'token', tokenAddress)
-    return parsedUrl
-  } else {
-    const prefix = prefixForNetwork(network)
-    return prefix !== null ? 
+  const prefix = prefixForNetwork(network)
+  return prefix !== null ? 
       `https://${prefix}etherscan.io/token/${tokenAddress}${ 
         holderAddress ? `?a=${ holderAddress }` : '' }`
-      : ''
-  }
+    : '';
 }
+
+export function createCustomTokenTrackerLink(
+  tokenAddress: string,
+  customNetworkUrl: string,
+): string {
+    const parsedUrl = addPathToUrl(customNetworkUrl, 'token', tokenAddress)
+    return parsedUrl;
+}
+
 
 export function createTokenTrackerLinkForChain(
   tokenAddress: string,

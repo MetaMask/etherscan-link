@@ -1,7 +1,7 @@
 
 import { createAccountLink, createAccountLinkForChain, createCustomAccountLink } from './account-link'
 import { createCustomExplorerLink, createExplorerLink, createExplorerLinkForChain } from './explorer-link'
-import { createTokenTrackerLink, createTokenTrackerLinkForChain } from './token-tracker-link'
+import { createTokenTrackerLink, createCustomTokenTrackerLink, createTokenTrackerLinkForChain } from './token-tracker-link'
 
 export = {
   createExplorerLink,
@@ -11,5 +11,6 @@ export = {
   createCustomAccountLink,
   createAccountLinkForChain,
   createTokenTrackerLink,
+  createCustomTokenTrackerLink,
   createTokenTrackerLinkForChain,
 }
