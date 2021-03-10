@@ -1,5 +1,6 @@
+import { addPathToUrl } from './helpers';
 import prefixForChain from './prefix-for-chain';
-import prefixForNetwork from './prefix-for-network'
+import prefixForNetwork from './prefix-for-network';
 
 export function createTokenTrackerLink(
   tokenAddress: string,
@@ -12,6 +13,15 @@ export function createTokenTrackerLink(
         holderAddress ? `?a=${ holderAddress }` : '' }`
     : '';
 }
+
+export function createCustomTokenTrackerLink(
+  tokenAddress: string,
+  customNetworkUrl: string,
+): string {
+    const parsedUrl = addPathToUrl(customNetworkUrl, 'token', tokenAddress)
+    return parsedUrl;
+}
+
 
 export function createTokenTrackerLinkForChain(
   tokenAddress: string,

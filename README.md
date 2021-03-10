@@ -8,7 +8,6 @@
 
 ```javascript
 const etherscanLink = require('@metamask/etherscan-link')
-
 const networkId = '1'
 const chainId = '0x1'
 const account = '0xFDEa65C8e26263F6d9A1B5de9555D2931A33b825'
@@ -23,5 +22,15 @@ const token = '0xdac17f958d2ee523a2206206994597c13d831ec7'
 const tokenTrackerLink = etherscanLink.createTokenTrackerLink(token, networkId)
 // You can also track token balances by account
 const accountTokenTrackerLink = etherscanLink.createTokenTrackerLink(token, networkId, account)
+
 const accountTokenTrackerLinkForChain = etherscanLink.createTokenTrackerLinkForChain(token, chainId, account)
+
+// Create urls for interacting with custom networks
+const customNetworkUrl = 'https://customnetwork.com/'
+
+const customtTokenTrackerLink = etherscanLink.createCustomTokenTrackerLink(token, customNetworkUrl)
+
+const customAccountLink = etherscanLink.createCustomAccountLink(account, customNetworkUrl)
+
+const customExplorerLink = etherscanLink.createCustomExplorerLink(hash, customNetworkUrl)
 ```

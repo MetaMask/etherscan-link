@@ -1,8 +1,11 @@
 const assert = require('assert')
 const {
   createAccountLink,
+  createCustomAccountLink,
   createExplorerLink,
+  createCustomExplorerLink,
   createTokenTrackerLink,
+  createCustomTokenTrackerLink,
   createExplorerLinkForChain,
   createAccountLinkForChain,
   createTokenTrackerLinkForChain
@@ -43,6 +46,11 @@ describe('account-link', function () {
       assert.strictEqual(result, '', 'should return an empty string')
     })
   })
+
+  it('should handle customNetwork url correctly', function () {
+    const result = createCustomAccountLink('foo', 'https://data-seed-prebsc-1-s1.binance.org:8545')
+    assert.strictEqual(result, 'https://data-seed-prebsc-1-s1.binance.org:8545/address/foo', 'should return binance testnet address url')
+  })
 })
 
 // `https://${prefix}etherscan.io/tx/${hash}`
@@ -79,6 +87,16 @@ describe('explorer-link', function () {
       const result = createExplorerLinkForChain('foo', '0xa')
       assert.strictEqual(result, '', 'should return an empty string')
     })
+  })
+  
+  it('should handle customNetwork url correctly', function () {
+    const result = createExplorerLink('foo', '3',)
+    assert.strictEqual(result, 'https://ropsten.etherscan.io/tx/foo', 'should handle ropsten')
+  })
+
+  it('should handle customNetwork url correctly', function () {
+    const result = createCustomExplorerLink('foo', 'https://data-seed-prebsc-1-s1.binance.org:8545')
+    assert.strictEqual(result, 'https://data-seed-prebsc-1-s1.binance.org:8545/tx/foo', 'should return binance testnet transaction url')
   })
 })
 
@@ -139,6 +157,11 @@ describe('token-tracker-link', function () {
     it('should null has a prefix', function () {
       const result = createTokenTrackerLinkForChain('foo', '0xe46', '0xabc')
       assert.strictEqual(result, '', 'should return an empty string')
+    })
+
+    it('should handle customNetwork url correctly', function () {
+      const result = createCustomTokenTrackerLink('foo', 'https://data-seed-prebsc-1-s1.binance.org:8545/')
+      assert.strictEqual(result, 'https://data-seed-prebsc-1-s1.binance.org:8545/token/foo', 'should return binance testnet token url')
     })
   })
 })
