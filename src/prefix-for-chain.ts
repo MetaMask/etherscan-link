@@ -2,22 +2,22 @@ export = function getPrefixForChain(chainId: string): string | null {
   let prefix;
   switch (chainId) {
     case '0x1': // main net
-      prefix = ''
-      break
+      prefix = '';
+      break;
     case '0x3': // ropsten test net
-      prefix = 'ropsten.'
-      break
+      prefix = 'ropsten.';
+      break;
     case '0x4': // rinkeby test net
-      prefix = 'rinkeby.'
-      break
+      prefix = 'rinkeby.';
+      break;
     case '0x5': // goerli test net
-      prefix = 'goerli.'
-      break
+      prefix = 'goerli.';
+      break;
     case '0x2a': // kovan test net
-      prefix = 'kovan.'
-      break
+      prefix = 'kovan.';
+      break;
     default:
-      prefix = null
+      prefix = null;
   }
-  return prefix
-}
+  return prefix;
+};

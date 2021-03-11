@@ -7,30 +7,27 @@ export function createTokenTrackerLink(
   network: string,
   holderAddress?: string,
 ): string {
-  const prefix = prefixForNetwork(network)
-  return prefix !== null ? 
-      `https://${prefix}etherscan.io/token/${tokenAddress}${ 
-        holderAddress ? `?a=${ holderAddress }` : '' }`
-    : '';
+  const prefix = prefixForNetwork(network);
+  return prefix === null ? '' :
+    `https://${prefix}etherscan.io/token/${tokenAddress}${
+      holderAddress ? `?a=${holderAddress}` : ''}`;
 }
 
 export function createCustomTokenTrackerLink(
   tokenAddress: string,
   customNetworkUrl: string,
 ): string {
-    const parsedUrl = addPathToUrl(customNetworkUrl, 'token', tokenAddress)
-    return parsedUrl;
+  const parsedUrl = addPathToUrl(customNetworkUrl, 'token', tokenAddress);
+  return parsedUrl;
 }
-
 
 export function createTokenTrackerLinkForChain(
   tokenAddress: string,
   chainId: string,
   holderAddress?: string,
 ): string {
-  const prefix = prefixForChain(chainId)
-  return prefix !== null ? 
-      `https://${prefix}etherscan.io/token/${tokenAddress}${ 
-        holderAddress ? `?a=${ holderAddress }` : '' }`
-    : '';
+  const prefix = prefixForChain(chainId);
+  return prefix === null ? '' :
+    `https://${prefix}etherscan.io/token/${tokenAddress}${
+      holderAddress ? `?a=${holderAddress}` : ''}`;
 }
