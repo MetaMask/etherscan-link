@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0] - 2021-03-11
+
+### Added
+
+- Add support for custom block explorer URL generation ([#31](https://github.com/MetaMask/etherscan-link/pull/31))
+
+### Changed
+
+- [**BREAKING**]: Drop support for Node.js versions below v10 ([#38](https://github.com/MetaMask/etherscan-link/pull/38))
+
 ## [1.5.0] - 2021-03-08
 
 ### Added
