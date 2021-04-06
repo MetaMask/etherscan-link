@@ -5,7 +5,7 @@ executors:
     parameters:
         node_version:
           type: integer
-          default: 10
+          default: 12
     docker:
       - image: circleci/node:<< parameters.node_version >>
 
@@ -16,14 +16,14 @@ workflows:
           name: prep-deps-<< matrix.node_version >>
           matrix:
             parameters:
-              node_version: [10, 12, 14]
+              node_version: [12, 14]
       - test-lint:
           requires:
-            - prep-deps-10
+            - prep-deps-12
       - test-unit:
           matrix:
             parameters:
-              node_version: [10, 12, 14]
+              node_version: [12, 14]
           requires:
             - prep-deps-<< matrix.node_version >>
       - all-tests-pass:
