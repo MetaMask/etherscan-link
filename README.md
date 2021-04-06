@@ -34,3 +34,9 @@ const customAccountLink = etherscanLink.createCustomAccountLink(account, customN
 
 const customExplorerLink = etherscanLink.createCustomExplorerLink(hash, customNetworkUrl)
 ```
+
+## Running tests
+
+```bash
+yarn test
+```

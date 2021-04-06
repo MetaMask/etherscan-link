@@ -10,6 +10,9 @@
   "files": [
     "dist/"
   ],
+  "engines": {
+    "node": ">=12.0.0"
+  },
   "scripts": {
     "build": "rm -rf dist/* && tsc",
     "lint": "eslint --ext js,ts .",
@@ -41,8 +44,5 @@
     "eslint-plugin-node": "^11.1.0",
     "mocha": "^7.1.1",
     "typescript": "^4.0.5"
-  },
-  "engines": {
-    "node": ">=10"
   }
 }
