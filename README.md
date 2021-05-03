@@ -33,6 +33,9 @@ const customtTokenTrackerLink = etherscanLink.createCustomTokenTrackerLink(token
 const customAccountLink = etherscanLink.createCustomAccountLink(account, customNetworkUrl)
 
 const customExplorerLink = etherscanLink.createCustomExplorerLink(hash, customNetworkUrl)
+
+// Generate custom or native block explorer link based on rcpPrefs
+const blockExplorerLink = etherscanLink.getBlockExplorerUrlForTx(transaction, rcpPrefs)
 ```
 
 ## Running tests
