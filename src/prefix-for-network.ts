@@ -1,6 +1,6 @@
-export = function getPrefixForNetwork(network: string): string | null {
+export = function getPrefixForNetwork(networkId: string): string | null {
   // eslint-disable-next-line radix
-  const net = parseInt(network);
+  const net = parseInt(networkId);
   let prefix;
 
   switch (net) {

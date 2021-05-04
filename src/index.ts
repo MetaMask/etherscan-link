@@ -1,5 +1,5 @@
 
-import { createAccountLink, createAccountLinkForChain, createCustomAccountLink } from './account-link';
+import { createAccountLink, createAccountLinkForChain, createCustomAccountLink, getAccountLink } from './account-link';
 import { createCustomExplorerLink, createExplorerLink, createExplorerLinkForChain, getBlockExplorerUrlForTx } from './explorer-link';
 import { createTokenTrackerLink, createCustomTokenTrackerLink, createTokenTrackerLinkForChain } from './token-tracker-link';
 
@@ -14,4 +14,5 @@ export = {
   createCustomTokenTrackerLink,
   createTokenTrackerLinkForChain,
   getBlockExplorerUrlForTx,
+  getAccountLink,
 };

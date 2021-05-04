@@ -4,7 +4,7 @@ import prefixForNetwork from './prefix-for-network';
 
 interface TransactionInterface {
   hash: string;
-  chainId: string;
+  chainId?: string;
   metamaskNetworkId: string;
 }
 

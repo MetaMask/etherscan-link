@@ -10,6 +10,7 @@ const {
   createAccountLinkForChain,
   createTokenTrackerLinkForChain,
   getBlockExplorerUrlForTx,
+  getAccountLink,
 } = require('../dist');
 
 // `https://${prefix}etherscan.io/address/${address}`
@@ -51,6 +52,50 @@ describe('account-link', function () {
   it('should handle customNetwork url correctly', function () {
     const result = createCustomAccountLink('foo', 'https://data-seed-prebsc-1-s1.binance.org:8545');
     assert.strictEqual(result, 'https://data-seed-prebsc-1-s1.binance.org:8545/address/foo', 'should return binance testnet address url');
+  });
+
+  describe('getAccountLink', function () {
+    it('should return the correct account-link url for an account based on chainId, networkId and rpcPref args', function () {
+      const getAccountLinkTests = [
+        {
+          expected: 'https://etherscan.io/address/0xabcd',
+          chainId: '0x1',
+          address: '0xabcd',
+        },
+        {
+          expected: 'https://etherscan.io/address/0xabcd',
+          networkId: '1',
+          address: '0xabcd',
+        },
+        {
+          expected: 'https://ropsten.etherscan.io/address/0xdef0',
+          chainId: '0x3',
+          address: '0xdef0',
+          rpcPrefs: {},
+        },
+        {
+          // test handling of `blockExplorerUrl` for a custom RPC
+          expected: 'https://block.explorer/address/0xabcd',
+          chainId: '0x21',
+          address: '0xabcd',
+          rpcPrefs: {
+            blockExplorerUrl: 'https://block.explorer',
+          },
+        },
+        {
+          // test handling of trailing `/` in `blockExplorerUrl` for a custom RPC
+          expected: 'https://another.block.explorer/address/0xdef0',
+          chainId: '0x1f',
+          address: '0xdef0',
+          rpcPrefs: {
+            blockExplorerUrl: 'https://another.block.explorer/',
+          },
+        },
+      ];
+      getAccountLinkTests.forEach(({ expected, address, chainId, rpcPrefs, networkId }) => {
+        assert.strictEqual(getAccountLink(address, chainId, rpcPrefs, networkId), expected);
+      });
+    });
   });
 });
 
@@ -161,93 +206,94 @@ describe('token-tracker-link', function () {
     });
   });
 
-/*
- * Test getBlockExplorerUrlForTx, 
- * Which applies correct explorer-link generator based on args
- */  
-  const getBlockExplorerUrlForTxTests = [
-    {
-      expected: 'https://etherscan.io/tx/0xabcd',
-      transaction: {
-        metamaskNetworkId: '1',
-        hash: '0xabcd',
-      },
-    },
-    {
-      expected: 'https://ropsten.etherscan.io/tx/0xdef0',
-      transaction: {
-        metamaskNetworkId: '3',
-        hash: '0xdef0',
-      },
-      rpcPrefs: {},
-    },
-    {
-      // test handling of `blockExplorerUrl` for a custom RPC
-      expected: 'https://block.explorer/tx/0xabcd',
-      transaction: {
-        metamaskNetworkId: '31',
-        hash: '0xabcd',
-      },
-      rpcPrefs: {
-        blockExplorerUrl: 'https://block.explorer',
-      },
-    },
-    {
-      // test handling of trailing `/` in `blockExplorerUrl` for a custom RPC
-      expected: 'https://another.block.explorer/tx/0xdef0',
-      transaction: {
-        networkId: '33',
-        hash: '0xdef0',
-      },
-      rpcPrefs: {
-        blockExplorerUrl: 'https://another.block.explorer/',
-      },
-    },
-    {
-      expected: 'https://etherscan.io/tx/0xabcd',
-      transaction: {
-        chainId: '0x1',
-        hash: '0xabcd',
-      },
-    },
-    {
-      expected: 'https://ropsten.etherscan.io/tx/0xdef0',
-      transaction: {
-        chainId: '0x3',
-        hash: '0xdef0',
-      },
-      rpcPrefs: {},
-    },
-    {
-      // test handling of `blockExplorerUrl` for a custom RPC
-      expected: 'https://block.explorer/tx/0xabcd',
-      transaction: {
-        chainId: '0x1f',
-        hash: '0xabcd',
-      },
-      rpcPrefs: {
-        blockExplorerUrl: 'https://block.explorer',
-      },
-    },
-    {
-      // test handling of trailing `/` in `blockExplorerUrl` for a custom RPC
-      expected: 'https://another.block.explorer/tx/0xdef0',
-      transaction: {
-        chainId: '0x21',
-        hash: '0xdef0',
-      },
-      rpcPrefs: {
-        blockExplorerUrl: 'https://another.block.explorer/',
-      },
-    },
-  ];
-  
+  /*
+ * Test getBlockExplorerUrlForTx,
+  * Which applies correct explorer-link generator based on args
+  */
   describe('getBlockExplorerUrlForTx', function () {
-    getBlockExplorerUrlForTxTests.forEach((test) => {
-      it(`should return '${test.expected}' for transaction with hash: '${test.transaction.hash}'`, function () {
+    it('should return the correct block explorer url for an account based on chainId, networkId and rpcPref args', function () {
+
+      const getBlockExplorerUrlForTxTests = [
+        {
+          expected: 'https://etherscan.io/tx/0xabcd',
+          transaction: {
+            metamaskNetworkId: '1',
+            hash: '0xabcd',
+          },
+        },
+        {
+          expected: 'https://ropsten.etherscan.io/tx/0xdef0',
+          transaction: {
+            metamaskNetworkId: '3',
+            hash: '0xdef0',
+          },
+          rpcPrefs: {},
+        },
+        {
+          // test handling of `blockExplorerUrl` for a custom RPC
+          expected: 'https://block.explorer/tx/0xabcd',
+          transaction: {
+            metamaskNetworkId: '31',
+            hash: '0xabcd',
+          },
+          rpcPrefs: {
+            blockExplorerUrl: 'https://block.explorer',
+          },
+        },
+        {
+          // test handling of trailing `/` in `blockExplorerUrl` for a custom RPC
+          expected: 'https://another.block.explorer/tx/0xdef0',
+          transaction: {
+            metamaskNetworkId: '33',
+            hash: '0xdef0',
+          },
+          rpcPrefs: {
+            blockExplorerUrl: 'https://another.block.explorer/',
+          },
+        },
+        {
+          expected: 'https://etherscan.io/tx/0xabcd',
+          transaction: {
+            chainId: '0x1',
+            hash: '0xabcd',
+          },
+        },
+        {
+          expected: 'https://ropsten.etherscan.io/tx/0xdef0',
+          transaction: {
+            chainId: '0x3',
+            hash: '0xdef0',
+          },
+          rpcPrefs: {},
+        },
+        {
+          // test handling of `blockExplorerUrl` for a custom RPC
+          expected: 'https://block.explorer/tx/0xabcd',
+          transaction: {
+            chainId: '0x1f',
+            hash: '0xabcd',
+          },
+          rpcPrefs: {
+            blockExplorerUrl: 'https://block.explorer',
+          },
+        },
+        {
+          // test handling of trailing `/` in `blockExplorerUrl` for a custom RPC
+          expected: 'https://another.block.explorer/tx/0xdef0',
+          transaction: {
+            chainId: '0x21',
+            hash: '0xdef0',
+          },
+          rpcPrefs: {
+            blockExplorerUrl: 'https://another.block.explorer/',
+          },
+        },
+      ];
+
+      getBlockExplorerUrlForTxTests.forEach((test) => {
         assert.strictEqual(
           getBlockExplorerUrlForTx(test.transaction, test.rpcPrefs),
-          test.expected,
+          test.expected
         );
       });
     });
