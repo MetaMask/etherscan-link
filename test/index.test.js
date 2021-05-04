@@ -11,6 +11,7 @@ const {
   createTokenTrackerLinkForChain,
   getBlockExplorerUrlForTx,
   getAccountLink,
+  getTokenTracker,
 } = require('../dist');
 
 // `https://${prefix}etherscan.io/address/${address}`
@@ -203,6 +204,76 @@ describe('token-tracker-link', function () {
     it('should handle customNetwork url correctly', function () {
       const result = createCustomTokenTrackerLink('foo', 'https://data-seed-prebsc-1-s1.binance.org:8545/');
       assert.strictEqual(result, 'https://data-seed-prebsc-1-s1.binance.org:8545/token/foo', 'should return binance testnet token url');
+    });
+
+    describe('getTokenTracker', function () {
+      it('should return the correct token tracker url based on chainId, networkId and rpcPref args', function () {
+
+        const getTokenTrackerTests = [
+          {
+            expected: 'https://etherscan.io/token/0xabcd',
+            networkId: '1',
+            tokenAddress: '0xabcd',
+          },
+          {
+            expected: 'https://ropsten.etherscan.io/token/0xdef0',
+            networkId: '3',
+            tokenAddress: '0xdef0',
+          },
+          {
+            // test handling of `blockExplorerUrl` for a custom RPC
+            expected: 'https://block.explorer/token/0xar31',
+            tokenAddress: '0xar31',
+            rpcPrefs: {
+              blockExplorerUrl: 'https://block.explorer',
+            },
+          },
+          {
+            // test handling of trailing `/` in `blockExplorerUrl` for a custom RPC
+            expected: 'https://another.block.explorer/token/0xdef0',
+            tokenAddress: '0xdef0',
+            rpcPrefs: {
+              blockExplorerUrl: 'https://another.block.explorer/',
+            },
+          },
+          {
+            expected: 'https://etherscan.io/token/0xabcd',
+            chainId: '0x1',
+            tokenAddress: '0xabcd',
+          },
+          {
+            expected: 'https://ropsten.etherscan.io/token/0xdef0',
+            chainId: '0x3',
+            tokenAddress: '0xdef0',
+            rpcPrefs: {},
+          },
+          {
+            // test handling of `blockExplorerUrl` for a custom RPC
+            expected: 'https://block.explorer/token/0xabcd',
+            chainId: '0x1f',
+            tokenAddress: '0xabcd',
+            rpcPrefs: {
+              blockExplorerUrl: 'https://block.explorer',
+            },
+          },
+          {
+            // test handling of trailing `/` in `blockExplorerUrl` for a custom RPC
+            expected: 'https://another.block.explorer/token/0xdef0',
+            chainId: '0x21',
+            tokenAddress: '0xdef0',
+            rpcPrefs: {
+              blockExplorerUrl: 'https://another.block.explorer/',
+            },
+          },
+        ];
+
+        getTokenTrackerTests.forEach((test) => {
+          assert.strictEqual(
+            getTokenTracker(test.tokenAddress, test.chainId, test.networkId, test.holderAddress, test.rpcPrefs),
+            test.expected
+          );
+        });
+      });
     });
   });
 
