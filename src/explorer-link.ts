@@ -2,6 +2,16 @@ import { addPathToUrl } from './helpers';
 import prefixForChain from './prefix-for-chain';
 import prefixForNetwork from './prefix-for-network';
 
+interface TransactionInterface {
+  hash: string;
+  chainId: string;
+  metamaskNetworkId: string;
+}
+
+interface RpcPrefsInterface {
+  blockExplorerUrl?: string;
+}
+
 export function createCustomExplorerLink(hash: string, customNetworkUrl: string): string {
   const parsedUrl = addPathToUrl(customNetworkUrl, 'tx', hash);
   return parsedUrl;
@@ -16,4 +26,14 @@ export function createExplorerLink(hash: string, network: string): string {
 export function createExplorerLinkForChain(hash: string, chainId: string): string {
   const prefix = prefixForChain(chainId);
   return prefix === null ? '' : `https://${prefix}etherscan.io/tx/${hash}`;
+}
+
+export function getBlockExplorerUrlForTx(transaction: TransactionInterface, rpcPrefs: RpcPrefsInterface = {}) {
+  if (rpcPrefs.blockExplorerUrl) {
+    return createCustomExplorerLink(transaction.hash, rpcPrefs.blockExplorerUrl);
+  }
+  if (transaction.chainId) {
+    return createExplorerLinkForChain(transaction.hash, transaction.chainId);
+  }
+  return createExplorerLink(transaction.hash, transaction.metamaskNetworkId);
 }
