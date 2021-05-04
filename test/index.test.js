@@ -9,6 +9,7 @@ const {
   createExplorerLinkForChain,
   createAccountLinkForChain,
   createTokenTrackerLinkForChain,
+  getBlockExplorerUrlForTx,
 } = require('../dist');
 
 // `https://${prefix}etherscan.io/address/${address}`
@@ -157,6 +158,98 @@ describe('token-tracker-link', function () {
     it('should handle customNetwork url correctly', function () {
       const result = createCustomTokenTrackerLink('foo', 'https://data-seed-prebsc-1-s1.binance.org:8545/');
       assert.strictEqual(result, 'https://data-seed-prebsc-1-s1.binance.org:8545/token/foo', 'should return binance testnet token url');
+    });
+  });
+
+/*
+ * Test getBlockExplorerUrlForTx, 
+ * Which applies correct explorer-link generator based on args
+ */  
+  const getBlockExplorerUrlForTxTests = [
+    {
+      expected: 'https://etherscan.io/tx/0xabcd',
+      transaction: {
+        metamaskNetworkId: '1',
+        hash: '0xabcd',
+      },
+    },
+    {
+      expected: 'https://ropsten.etherscan.io/tx/0xdef0',
+      transaction: {
+        metamaskNetworkId: '3',
+        hash: '0xdef0',
+      },
+      rpcPrefs: {},
+    },
+    {
+      // test handling of `blockExplorerUrl` for a custom RPC
+      expected: 'https://block.explorer/tx/0xabcd',
+      transaction: {
+        metamaskNetworkId: '31',
+        hash: '0xabcd',
+      },
+      rpcPrefs: {
+        blockExplorerUrl: 'https://block.explorer',
+      },
+    },
+    {
+      // test handling of trailing `/` in `blockExplorerUrl` for a custom RPC
+      expected: 'https://another.block.explorer/tx/0xdef0',
+      transaction: {
+        networkId: '33',
+        hash: '0xdef0',
+      },
+      rpcPrefs: {
+        blockExplorerUrl: 'https://another.block.explorer/',
+      },
+    },
+    {
+      expected: 'https://etherscan.io/tx/0xabcd',
+      transaction: {
+        chainId: '0x1',
+        hash: '0xabcd',
+      },
+    },
+    {
+      expected: 'https://ropsten.etherscan.io/tx/0xdef0',
+      transaction: {
+        chainId: '0x3',
+        hash: '0xdef0',
+      },
+      rpcPrefs: {},
+    },
+    {
+      // test handling of `blockExplorerUrl` for a custom RPC
+      expected: 'https://block.explorer/tx/0xabcd',
+      transaction: {
+        chainId: '0x1f',
+        hash: '0xabcd',
+      },
+      rpcPrefs: {
+        blockExplorerUrl: 'https://block.explorer',
+      },
+    },
+    {
+      // test handling of trailing `/` in `blockExplorerUrl` for a custom RPC
+      expected: 'https://another.block.explorer/tx/0xdef0',
+      transaction: {
+        chainId: '0x21',
+        hash: '0xdef0',
+      },
+      rpcPrefs: {
+        blockExplorerUrl: 'https://another.block.explorer/',
+      },
+    },
+  ];
+  
+  describe('getBlockExplorerUrlForTx', function () {
+    getBlockExplorerUrlForTxTests.forEach((test) => {
+      it(`should return '${test.expected}' for transaction with hash: '${test.transaction.hash}'`, function () {
+        assert.strictEqual(
+          getBlockExplorerUrlForTx(test.transaction, test.rpcPrefs),
+          test.expected,
+        );
+      });
     });
   });
 });
