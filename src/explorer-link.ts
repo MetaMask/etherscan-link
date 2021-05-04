@@ -2,12 +2,12 @@ import { addPathToUrl } from './helpers';
 import prefixForChain from './prefix-for-chain';
 import prefixForNetwork from './prefix-for-network';
 
+// TODO improve type safety / discriminating unions (this may require a discriminant property)
 interface TransactionInterface {
   hash: string;
-  chainId?: string;
+  chainId: string;
   metamaskNetworkId: string;
 }
-
 interface RpcPrefsInterface {
   blockExplorerUrl?: string;
 }
@@ -28,7 +28,7 @@ export function createExplorerLinkForChain(hash: string, chainId: string): strin
   return prefix === null ? '' : `https://${prefix}etherscan.io/tx/${hash}`;
 }
 
-export function getBlockExplorerUrlForTx(transaction: TransactionInterface, rpcPrefs: RpcPrefsInterface = {}) {
+export function getBlockExplorerLink(transaction: TransactionInterface, rpcPrefs: RpcPrefsInterface = {}) {
   if (rpcPrefs.blockExplorerUrl) {
     return createCustomExplorerLink(transaction.hash, rpcPrefs.blockExplorerUrl);
   }

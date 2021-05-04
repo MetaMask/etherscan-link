@@ -36,7 +36,7 @@ export function createTokenTrackerLinkForChain(
       holderAddress ? `?a=${holderAddress}` : ''}`;
 }
 
-export function getTokenTracker(tokenAddress: string, chainId: string, networkId: string, holderAddress?: string, rpcPrefs: RpcPrefsInterface = {}) {
+export function getTokenTrackerLink(tokenAddress: string, chainId: string, networkId: string, holderAddress?: string, rpcPrefs: RpcPrefsInterface = {}) {
   if (rpcPrefs.blockExplorerUrl) {
     return createCustomTokenTrackerLink(tokenAddress, rpcPrefs.blockExplorerUrl);
   }

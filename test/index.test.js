@@ -9,9 +9,9 @@ const {
   createExplorerLinkForChain,
   createAccountLinkForChain,
   createTokenTrackerLinkForChain,
-  getBlockExplorerUrlForTx,
+  getBlockExplorerLink,
   getAccountLink,
-  getTokenTracker,
+  getTokenTrackerLink,
 } = require('../dist');
 
 // `https://${prefix}etherscan.io/address/${address}`
@@ -206,7 +206,7 @@ describe('token-tracker-link', function () {
       assert.strictEqual(result, 'https://data-seed-prebsc-1-s1.binance.org:8545/token/foo', 'should return binance testnet token url');
     });
 
-    describe('getTokenTracker', function () {
+    describe('getTokenTrackerLink', function () {
       it('should return the correct token tracker url based on chainId, networkId and rpcPref args', function () {
 
         const getTokenTrackerTests = [
@@ -269,7 +269,7 @@ describe('token-tracker-link', function () {
 
         getTokenTrackerTests.forEach((test) => {
           assert.strictEqual(
-            getTokenTracker(test.tokenAddress, test.chainId, test.networkId, test.holderAddress, test.rpcPrefs),
+            getTokenTrackerLink(test.tokenAddress, test.chainId, test.networkId, test.holderAddress, test.rpcPrefs),
             test.expected
           );
         });
@@ -278,13 +278,13 @@ describe('token-tracker-link', function () {
   });
 
   /*
- * Test getBlockExplorerUrlForTx,
+ * Test getBlockExplorerLink,
   * Which applies correct explorer-link generator based on args
   */
-  describe('getBlockExplorerUrlForTx', function () {
+  describe('getBlockExplorerLink', function () {
     it('should return the correct block explorer url for an account based on chainId, networkId and rpcPref args', function () {
 
-      const getBlockExplorerUrlForTxTests = [
+      const getBlockExplorerLinkTests = [
         {
           expected: 'https://etherscan.io/tx/0xabcd',
           transaction: {
@@ -361,9 +361,9 @@ describe('token-tracker-link', function () {
         },
       ];
 
-      getBlockExplorerUrlForTxTests.forEach((test) => {
+      getBlockExplorerLinkTests.forEach((test) => {
         assert.strictEqual(
-          getBlockExplorerUrlForTx(test.transaction, test.rpcPrefs),
+          getBlockExplorerLink(test.transaction, test.rpcPrefs),
           test.expected
         );
       });
