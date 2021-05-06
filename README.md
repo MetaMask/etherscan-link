@@ -33,6 +33,15 @@ const customtTokenTrackerLink = etherscanLink.createCustomTokenTrackerLink(token
 const customAccountLink = etherscanLink.createCustomAccountLink(account, customNetworkUrl)
 
 const customExplorerLink = etherscanLink.createCustomExplorerLink(hash, customNetworkUrl)
+
+// Generate custom or native block explorer link based on rcpPrefs
+const blockExplorerLink = etherscanLink.getBlockExplorerLink(transaction, rcpPrefs)
+
+// Generate account link for custom or native network 
+const getAccountLink = etherscanLink.getAccountLink(address, chainId, rpcPrefs, networkId)
+
+// Generate token tracker link for custom or native network 
+const tokenTrackerLink = etherscanLink.getTokenTrackerLink(tokenAddress, chainId, networkId, holderAddress, rpcPrefs)
 ```
 
 ## Running tests
