@@ -15,7 +15,7 @@
   },
   "scripts": {
     "build": "rm -rf dist/* && tsc",
-    "prepare": "npm run build",
+    "prepare": "yarn build",
     "lint": "eslint --ext js,ts .",
     "test": "yarn build && mocha test",
     "prepublishOnly": "yarn test"
