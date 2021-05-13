@@ -1,6 +1,6 @@
-import { addPathToUrl } from './helpers';
-import prefixForChain from './prefix-for-chain';
-import prefixForNetwork from './prefix-for-network';
+import { addPathToUrl } from "./helpers";
+import getBaseUrlForChain from "./base-url-for-chain";
+import getBaseUrlForNetwork from "./base-url-for-network";
 
 interface RpcPrefsInterface {
   blockExplorerUrl?: string;
@@ -9,36 +9,49 @@ interface RpcPrefsInterface {
 export function createTokenTrackerLink(
   tokenAddress: string,
   networkId: string,
-  holderAddress?: string,
+  holderAddress?: string
 ): string {
-  const prefix = prefixForNetwork(networkId);
-  return prefix === null ? '' :
-    `https://${prefix}etherscan.io/token/${tokenAddress}${
-      holderAddress ? `?a=${holderAddress}` : ''}`;
+  const baseUrl = getBaseUrlForNetwork(networkId);
+  return baseUrl === null
+    ? ""
+    : `https://${baseUrl}/token/${tokenAddress}${
+        holderAddress ? `?a=${holderAddress}` : ""
+      }`;
 }
 
 export function createCustomTokenTrackerLink(
   tokenAddress: string,
-  customNetworkUrl: string,
+  customNetworkUrl: string
 ): string {
-  const parsedUrl = addPathToUrl(customNetworkUrl, 'token', tokenAddress);
+  const parsedUrl = addPathToUrl(customNetworkUrl, "token", tokenAddress);
   return parsedUrl;
 }
 
 export function createTokenTrackerLinkForChain(
   tokenAddress: string,
   chainId: string,
-  holderAddress?: string,
+  holderAddress?: string
 ): string {
-  const prefix = prefixForChain(chainId);
-  return prefix === null ? '' :
-    `https://${prefix}etherscan.io/token/${tokenAddress}${
-      holderAddress ? `?a=${holderAddress}` : ''}`;
+  const baseUrl = getBaseUrlForChain(chainId);
+  return baseUrl === null
+    ? ""
+    : `https://${baseUrl}/token/${tokenAddress}${
+        holderAddress ? `?a=${holderAddress}` : ""
+      }`;
 }
 
-export function getTokenTrackerLink(tokenAddress: string, chainId: string, networkId: string, holderAddress?: string, rpcPrefs: RpcPrefsInterface = {}) {
+export function getTokenTrackerLink(
+  tokenAddress: string,
+  chainId: string,
+  networkId: string,
+  holderAddress?: string,
+  rpcPrefs: RpcPrefsInterface = {}
+) {
   if (rpcPrefs.blockExplorerUrl) {
-    return createCustomTokenTrackerLink(tokenAddress, rpcPrefs.blockExplorerUrl);
+    return createCustomTokenTrackerLink(
+      tokenAddress,
+      rpcPrefs.blockExplorerUrl
+    );
   }
   if (networkId) {
     return createTokenTrackerLink(tokenAddress, networkId, holderAddress);
