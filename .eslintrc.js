@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  extends: 
+  extends: [
     '@metamask/eslint-config',
     '@metamask/eslint-config/config/mocha',
   ],
