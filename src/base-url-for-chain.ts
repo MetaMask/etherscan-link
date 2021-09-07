@@ -26,7 +26,7 @@ export = function getBaseUrlForChain(chainId: string): string | null {
       baseUrl = "testnet.bscscan.com";
       break;
     case "0xa4b1": // arbitrum main net
-      baseUrl = "explorer.offchainlabs.com";
+      baseUrl = "arbiscan.io";
       break;
     default:
       baseUrl = null;
