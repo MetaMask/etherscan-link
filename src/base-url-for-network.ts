@@ -16,6 +16,9 @@ export = function getBaseUrlForNetwork(networkId: string): string | null {
     case 5: // goerli test net
       baseUrl = "goerli.etherscan.io";
       break;
+    case 10: // optimism main net
+      baseUrl = "optimistic.etherscan.io";
+      break;
     case 42: // kovan test net
       baseUrl = "kovan.etherscan.io";
       break;
@@ -24,6 +27,9 @@ export = function getBaseUrlForNetwork(networkId: string): string | null {
       break;
     case 97: // bsc test net
       baseUrl = "testnet.bscscan.com";
+      break;
+    case 42161: // arbitrum main net
+      baseUrl = "explorer.offchainlabs.com";
       break;
     default:
       baseUrl = null;
