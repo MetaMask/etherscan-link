@@ -13,6 +13,9 @@ export = function getBaseUrlForChain(chainId: string): string | null {
     case "0x5": // goerli test net
       baseUrl = "goerli.etherscan.io";
       break;
+    case "0xa": // optimism main net
+      baseUrl = "optimistic.etherscan.io";
+      break;
     case "0x2a": // kovan test net
       baseUrl = "kovan.etherscan.io";
       break;
@@ -21,6 +24,9 @@ export = function getBaseUrlForChain(chainId: string): string | null {
       break;
     case "0x61": // bsc test net
       baseUrl = "testnet.bscscan.com";
+      break;
+    case "0xa4b1": // arbitrum main net
+      baseUrl = "explorer.offchainlabs.com";
       break;
     default:
       baseUrl = null;
