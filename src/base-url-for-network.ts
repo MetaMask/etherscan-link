@@ -29,7 +29,7 @@ export = function getBaseUrlForNetwork(networkId: string): string | null {
       baseUrl = "testnet.bscscan.com";
       break;
     case 42161: // arbitrum main net
-      baseUrl = "arbiscan.io/";
+      baseUrl = "arbiscan.io";
       break;
     default:
       baseUrl = null;
