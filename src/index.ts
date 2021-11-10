@@ -2,6 +2,7 @@
 import { createAccountLink, createAccountLinkForChain, createCustomAccountLink, getAccountLink } from './account-link';
 import { createCustomExplorerLink, createExplorerLink, createExplorerLinkForChain, getBlockExplorerLink } from './explorer-link';
 import { createTokenTrackerLink, createCustomTokenTrackerLink, createTokenTrackerLinkForChain, getTokenTrackerLink } from './token-tracker-link';
+import { supportedChains } from './supported-chains';
 
 export = {
   createExplorerLink,
@@ -16,4 +17,5 @@ export = {
   getBlockExplorerLink,
   getAccountLink,
   getTokenTrackerLink,
+  supportedChains,
 };
