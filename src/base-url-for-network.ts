@@ -28,6 +28,9 @@ export = function getBaseUrlForNetwork(networkId: string): string | null {
     case 97: // bsc test net
       baseUrl = "testnet.bscscan.com";
       break;
+    case 137: // polygon main net
+      baseUrl = "polygonscan.com";
+      break;
     case 42161: // arbitrum main net
       baseUrl = "arbiscan.io";
       break;

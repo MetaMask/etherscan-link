@@ -25,6 +25,9 @@ export = function getBaseUrlForChain(chainId: string): string | null {
     case "0x61": // bsc test net
       baseUrl = "testnet.bscscan.com";
       break;
+    case "0x89": // polygon main net
+      baseUrl = "polygonscan.com";
+      break;
     case "0xa4b1": // arbitrum main net
       baseUrl = "arbiscan.io";
       break;
