@@ -5,7 +5,7 @@ export const addPathToUrl = (customNetworkUrl: string, linkType: string, suffixT
 
   const auth = username ? `${username}:${password}` : '';
 
-  const parsedUrl = new URL(`${protocol}//${auth}${host}${newPath}${search}${hash}`);
+  const parsedUrl = new URL(`${protocol}//${auth}${host}${hash.endsWith('#/') ? '#' : hash}${newPath}${search}`);
 
   return parsedUrl.toString();
 };

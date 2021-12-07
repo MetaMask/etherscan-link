@@ -237,6 +237,14 @@ describe('token-tracker-link', function () {
             },
           },
           {
+            // test handling of trailing `#/` in `blockExplorerUrl` for a custom RPC
+            expected: 'https://another.block.explorer/#/token/0xdef0',
+            tokenAddress: '0xdef0',
+            rpcPrefs: {
+              blockExplorerUrl: 'https://another.block.explorer/#/',
+            },
+          },
+          {
             expected: 'https://etherscan.io/token/0xabcd',
             chainId: '0x1',
             tokenAddress: '0xabcd',
@@ -263,6 +271,15 @@ describe('token-tracker-link', function () {
             tokenAddress: '0xdef0',
             rpcPrefs: {
               blockExplorerUrl: 'https://another.block.explorer/',
+            },
+          },
+          {
+            // test handling of trailing `#/` in `blockExplorerUrl` for a custom RPC
+            expected: 'https://another.block.explorer/#/token/0xdef0',
+            chainId: '0x21',
+            tokenAddress: '0xdef0',
+            rpcPrefs: {
+              blockExplorerUrl: 'https://another.block.explorer/#/',
             },
           },
         ];
@@ -323,6 +340,17 @@ describe('token-tracker-link', function () {
           },
         },
         {
+          // test handling of trailing `#/` in `blockExplorerUrl` for a custom RPC
+          expected: 'https://another.block.explorer/#/tx/0xdef0',
+          transaction: {
+            metamaskNetworkId: '33',
+            hash: '0xdef0',
+          },
+          rpcPrefs: {
+            blockExplorerUrl: 'https://another.block.explorer/#/',
+          },
+        },
+        {
           expected: 'https://etherscan.io/tx/0xabcd',
           transaction: {
             chainId: '0x1',
@@ -357,6 +385,17 @@ describe('token-tracker-link', function () {
           },
           rpcPrefs: {
             blockExplorerUrl: 'https://another.block.explorer/',
+          },
+        },
+        {
+          // test handling of trailing `#/` in `blockExplorerUrl` for a custom RPC
+          expected: 'https://another.block.explorer/#/tx/0xdef0',
+          transaction: {
+            chainId: '0x21',
+            hash: '0xdef0',
+          },
+          rpcPrefs: {
+            blockExplorerUrl: 'https://another.block.explorer/#/',
           },
         },
       ];
