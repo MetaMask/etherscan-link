@@ -16,6 +16,9 @@ export = function getPrefixForChain(chainId: string): string | null {
     case '0x2a': // kovan test net
       prefix = 'kovan.';
       break;
+    case '0xaa36a7': // sepolia test net
+      prefix = 'sepolia.';
+      break;
     default:
       prefix = null;
   }
