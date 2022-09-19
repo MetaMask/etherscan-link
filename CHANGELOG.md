@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [2.1.0] - 2021-05-07
 ### Added
 
-- Add methods (getBlockExplorerLink, getAccountLink, getTokenTrackerLink) that select correct block explorer link format based on input params ([#44](https://github.com/MetaMask/etherscan-link/pull/44))
+- Add methods (getBlockExplorerLink, getAccountLink, getTokenTrackerLink) that select correct block explorer link format based on input params ([#31](https://github.com/MetaMask/etherscan-link/pull/44))
 
 ## [2.0.0] - 2021-03-11
 
