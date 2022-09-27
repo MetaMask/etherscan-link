@@ -22,9 +22,9 @@ describe('account-link', function () {
       assert.strictEqual(result, 'https://etherscan.io/address/foo', 'should handle mainnet');
     });
 
-    it('should handle ropsten correctly', function () {
-      const result = createAccountLink('foo', '3');
-      assert.strictEqual(result, 'https://ropsten.etherscan.io/address/foo', 'should handle ropsten');
+    it('should handle goerli correctly', function () {
+      const result = createAccountLink('foo', '5');
+      assert.strictEqual(result, 'https://goerli.etherscan.io/address/foo', 'should handle goerli');
     });
 
     it('should have null as a prefix', function () {
@@ -39,9 +39,9 @@ describe('account-link', function () {
       assert.strictEqual(result, 'https://etherscan.io/address/foo', 'should handle mainnet');
     });
 
-    it('should handle ropsten correctly', function () {
-      const result = createAccountLinkForChain('foo', '0x3');
-      assert.strictEqual(result, 'https://ropsten.etherscan.io/address/foo', 'should handle ropsten');
+    it('should handle goerli correctly', function () {
+      const result = createAccountLinkForChain('foo', '0x5');
+      assert.strictEqual(result, 'https://goerli.etherscan.io/address/foo', 'should handle goerli');
     });
 
     it('should have null as a prefix', function () {
@@ -69,8 +69,8 @@ describe('account-link', function () {
           address: '0xabcd',
         },
         {
-          expected: 'https://ropsten.etherscan.io/address/0xdef0',
-          chainId: '0x3',
+          expected: 'https://goerli.etherscan.io/address/0xdef0',
+          chainId: '0x5',
           address: '0xdef0',
           rpcPrefs: {},
         },
@@ -108,9 +108,9 @@ describe('explorer-link', function () {
       assert.strictEqual(result, 'https://etherscan.io/tx/foo', 'should handle mainnet');
     });
 
-    it('should handle ropsten correctly', function () {
-      const result = createExplorerLink('foo', '3');
-      assert.strictEqual(result, 'https://ropsten.etherscan.io/tx/foo', 'should handle ropsten');
+    it('should handle goerli correctly', function () {
+      const result = createExplorerLink('foo', '5');
+      assert.strictEqual(result, 'https://goerli.etherscan.io/tx/foo', 'should handle goerli');
     });
 
     it('should have null as a prefix', function () {
@@ -125,9 +125,9 @@ describe('explorer-link', function () {
       assert.strictEqual(result, 'https://etherscan.io/tx/foo', 'should handle mainnet');
     });
 
-    it('should handle ropsten correctly', function () {
-      const result = createExplorerLinkForChain('foo', '0x3');
-      assert.strictEqual(result, 'https://ropsten.etherscan.io/tx/foo', 'should handle ropsten');
+    it('should handle goerli correctly', function () {
+      const result = createExplorerLinkForChain('foo', '0x5');
+      assert.strictEqual(result, 'https://goerli.etherscan.io/tx/foo', 'should handle goerli');
     });
 
     it('should have null as a prefix', function () {
@@ -154,9 +154,9 @@ describe('token-tracker-link', function () {
       assert.strictEqual(result, 'https://etherscan.io/token/foo', 'should handle mainnet');
     });
 
-    it('should handle ropsten correctly (no account)', function () {
-      const result = createTokenTrackerLink('foo', '3');
-      assert.strictEqual(result, 'https://ropsten.etherscan.io/token/foo', 'should handle ropsten');
+    it('should handle goerli correctly (no account)', function () {
+      const result = createTokenTrackerLink('foo', '5');
+      assert.strictEqual(result, 'https://goerli.etherscan.io/token/foo', 'should handle goerli');
     });
 
     it('should handle mainnet correctly (account)', function () {
@@ -164,9 +164,9 @@ describe('token-tracker-link', function () {
       assert.strictEqual(result, 'https://etherscan.io/token/foo?a=0xabc', 'should handle mainnet');
     });
 
-    it('should handle ropsten correctly (account)', function () {
-      const result = createTokenTrackerLink('foo', '3', '0xabc');
-      assert.strictEqual(result, 'https://ropsten.etherscan.io/token/foo?a=0xabc', 'should handle ropsten');
+    it('should handle goerli correctly (account)', function () {
+      const result = createTokenTrackerLink('foo', '5', '0xabc');
+      assert.strictEqual(result, 'https://goerli.etherscan.io/token/foo?a=0xabc', 'should handle goerli');
     });
 
     it('should null has a prefix', function () {
@@ -181,9 +181,9 @@ describe('token-tracker-link', function () {
       assert.strictEqual(result, 'https://etherscan.io/token/foo', 'should handle mainnet');
     });
 
-    it('should handle ropsten correctly (no account)', function () {
-      const result = createTokenTrackerLinkForChain('foo', '0x3');
-      assert.strictEqual(result, 'https://ropsten.etherscan.io/token/foo', 'should handle ropsten');
+    it('should handle goerli correctly (no account)', function () {
+      const result = createTokenTrackerLinkForChain('foo', '0x5');
+      assert.strictEqual(result, 'https://goerli.etherscan.io/token/foo', 'should handle goerli');
     });
 
     it('should handle mainnet correctly (account)', function () {
@@ -191,9 +191,9 @@ describe('token-tracker-link', function () {
       assert.strictEqual(result, 'https://etherscan.io/token/foo?a=0xabc', 'should handle mainnet');
     });
 
-    it('should handle ropsten correctly (account)', function () {
-      const result = createTokenTrackerLinkForChain('foo', '0x3', '0xabc');
-      assert.strictEqual(result, 'https://ropsten.etherscan.io/token/foo?a=0xabc', 'should handle ropsten');
+    it('should handle goerli correctly (account)', function () {
+      const result = createTokenTrackerLinkForChain('foo', '0x5', '0xabc');
+      assert.strictEqual(result, 'https://goerli.etherscan.io/token/foo?a=0xabc', 'should handle goerli');
     });
 
     it('should null has a prefix', function () {
@@ -216,8 +216,8 @@ describe('token-tracker-link', function () {
             tokenAddress: '0xabcd',
           },
           {
-            expected: 'https://ropsten.etherscan.io/token/0xdef0',
-            networkId: '3',
+            expected: 'https://goerli.etherscan.io/token/0xdef0',
+            networkId: '5',
             tokenAddress: '0xdef0',
           },
           {
@@ -242,8 +242,8 @@ describe('token-tracker-link', function () {
             tokenAddress: '0xabcd',
           },
           {
-            expected: 'https://ropsten.etherscan.io/token/0xdef0',
-            chainId: '0x3',
+            expected: 'https://goerli.etherscan.io/token/0xdef0',
+            chainId: '0x5',
             tokenAddress: '0xdef0',
             rpcPrefs: {},
           },
@@ -293,9 +293,9 @@ describe('token-tracker-link', function () {
           },
         },
         {
-          expected: 'https://ropsten.etherscan.io/tx/0xdef0',
+          expected: 'https://goerli.etherscan.io/tx/0xdef0',
           transaction: {
-            metamaskNetworkId: '3',
+            metamaskNetworkId: '5',
             hash: '0xdef0',
           },
           rpcPrefs: {},
@@ -330,9 +330,9 @@ describe('token-tracker-link', function () {
           },
         },
         {
-          expected: 'https://ropsten.etherscan.io/tx/0xdef0',
+          expected: 'https://goerli.etherscan.io/tx/0xdef0',
           transaction: {
-            chainId: '0x3',
+            chainId: '0x5',
             hash: '0xdef0',
           },
           rpcPrefs: {},
