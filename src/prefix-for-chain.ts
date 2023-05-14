@@ -7,6 +7,12 @@ export = function getPrefixForChain(chainId: string): string | null {
     case '0x5': // goerli test net
       prefix = 'goerli.';
       break;
+   case '0xa': // optimism
+      prefix = 'optimistic.';
+      break;
+    case '0x1a4': // optimism test net
+      prefix = 'optimism-goerli.';
+      break;
     case '0xaa36a7': // sepolia test net
       prefix = 'sepolia.';
       break;
