@@ -7,8 +7,8 @@ export const addPathToUrl = (
     new URL(customNetworkUrl);
 
   const newPath = pathname.endsWith('/')
-    ? `${pathname}${linkType}/${suffixType}`
-    : `${pathname}/${linkType}/${suffixType}`;
+    ? `${pathname}${linkType}/${suffixType ?? 'undefined'}`
+    : `${pathname}/${linkType}/${suffixType ?? 'undefined'}`;
 
   const auth = username ? `${username}:${password}` : '';
 
