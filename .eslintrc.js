@@ -2,7 +2,7 @@ module.exports = {
   root: true,
   extends: [
     '@metamask/eslint-config',
-    '@metamask/eslint-config/config/mocha',
+    '@metamask/eslint-config-mocha',
   ],
   ignorePatterns: [
     '!.eslintrc.js',
@@ -10,7 +10,7 @@ module.exports = {
   ],
   overrides: [{
     extends: [
-      '@metamask/eslint-config/config/nodejs',
+      '@metamask/eslint-config-nodejs',
     ],
     files: [
       '.eslintrc.js',
@@ -21,7 +21,7 @@ module.exports = {
     },
   }, {
     extends: [
-      '@metamask/eslint-config/config/typescript',
+      '@metamask/eslint-config-typescript',
     ],
     files: ['**/*.ts'],
   }],

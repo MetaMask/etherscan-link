@@ -15,7 +15,11 @@
   },
   "scripts": {
     "build": "rm -rf dist/* && tsc",
-    "lint": "eslint --ext js,ts .",
+    "lint": "yarn lint:eslint && yarn lint:misc --check && yarn lint:dependencies --check",
+    "lint:dependencies": "depcheck",
+    "lint:eslint": "eslint . --cache --ext js,ts",
+    "lint:fix": "yarn lint:eslint --fix && yarn lint:misc --write && yarn lint:dependencies",
+    "lint:misc": "prettier '**/*.json' '**/*.md' '!CHANGELOG.md' '**/*.yml' '!.yarnrc.yml' --ignore-path .gitignore --no-error-on-unmatched-pattern",
     "test": "yarn build && mocha test",
     "prepublishOnly": "yarn test"
   },
@@ -35,14 +39,22 @@
   },
   "homepage": "https://github.com/MetaMask/etherscan-link#readme",
   "devDependencies": {
-    "@metamask/eslint-config": "^5.0.0",
-    "@typescript-eslint/eslint-plugin": "^4.14.2",
-    "@typescript-eslint/parser": "^4.14.2",
-    "eslint": "^7.7.0",
-    "eslint-plugin-import": "^2.22.0",
-    "eslint-plugin-mocha": "^8.0.0",
+    "@metamask/eslint-config": "^11.1.0",
+    "@metamask/eslint-config-mocha": "^11.1.0",
+    "@metamask/eslint-config-nodejs": "^11.1.0",
+    "@metamask/eslint-config-typescript": "^11.1.0",
+    "@typescript-eslint/eslint-plugin": "^5.30.7",
+    "@typescript-eslint/parser": "^5.30.7",
+    "depcheck": "^1.4.7",
+    "eslint": "^8.36.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsdoc": "^39.3.3",
+    "eslint-plugin-mocha": "^10.1.0",
     "eslint-plugin-node": "^11.1.0",
-    "mocha": "^7.1.1",
-    "typescript": "^4.0.5"
+    "eslint-plugin-prettier": "^4.2.1",
+    "mocha": "^9.2.2",
+    "prettier": "^2.7.1",
+    "typescript": "~4.8.4"
   }
 }
