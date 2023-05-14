@@ -10,6 +10,12 @@ export = function getPrefixForNetwork(networkId: string): string | null {
     case 5: // goerli test net
       prefix = 'goerli.';
       break;
+    case 10: // goerli test net
+      prefix = 'optimistic.';
+      break;
+    case 42: // goerli test net
+      prefix = 'optimism-goerli.';
+      break;
     case 11155111: // sepolia test net
       prefix = 'sepolia.';
       break;
