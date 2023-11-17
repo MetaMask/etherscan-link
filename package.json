@@ -11,7 +11,7 @@
     "dist/"
   ],
   "engines": {
-    "node": ">=12.0.0"
+    "node": "^18.18 || >=20"
   },
   "scripts": {
     "build": "rm -rf dist/* && tsc",
