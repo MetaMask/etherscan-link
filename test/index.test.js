@@ -1,4 +1,5 @@
 const assert = require('assert');
+
 const {
   createAccountLink,
   createCustomAccountLink,
@@ -19,12 +20,20 @@ describe('account-link', function () {
   describe('by networkId', function () {
     it('should handle mainnet correctly', function () {
       const result = createAccountLink('foo', '1');
-      assert.strictEqual(result, 'https://etherscan.io/address/foo', 'should handle mainnet');
+      assert.strictEqual(
+        result,
+        'https://etherscan.io/address/foo',
+        'should handle mainnet',
+      );
     });
 
     it('should handle goerli correctly', function () {
       const result = createAccountLink('foo', '5');
-      assert.strictEqual(result, 'https://goerli.etherscan.io/address/foo', 'should handle goerli');
+      assert.strictEqual(
+        result,
+        'https://goerli.etherscan.io/address/foo',
+        'should handle goerli',
+      );
     });
 
     it('should have null as a prefix', function () {
@@ -36,12 +45,20 @@ describe('account-link', function () {
   describe('by chainId', function () {
     it('should handle mainnet correctly', function () {
       const result = createAccountLinkForChain('foo', '0x1');
-      assert.strictEqual(result, 'https://etherscan.io/address/foo', 'should handle mainnet');
+      assert.strictEqual(
+        result,
+        'https://etherscan.io/address/foo',
+        'should handle mainnet',
+      );
     });
 
     it('should handle goerli correctly', function () {
       const result = createAccountLinkForChain('foo', '0x5');
-      assert.strictEqual(result, 'https://goerli.etherscan.io/address/foo', 'should handle goerli');
+      assert.strictEqual(
+        result,
+        'https://goerli.etherscan.io/address/foo',
+        'should handle goerli',
+      );
     });
 
     it('should have null as a prefix', function () {
@@ -51,8 +68,15 @@ describe('account-link', function () {
   });
 
   it('should handle customNetwork url correctly', function () {
-    const result = createCustomAccountLink('foo', 'https://data-seed-prebsc-1-s1.binance.org:8545');
-    assert.strictEqual(result, 'https://data-seed-prebsc-1-s1.binance.org:8545/address/foo', 'should return binance testnet address url');
+    const result = createCustomAccountLink(
+      'foo',
+      'https://data-seed-prebsc-1-s1.binance.org:8545',
+    );
+    assert.strictEqual(
+      result,
+      'https://data-seed-prebsc-1-s1.binance.org:8545/address/foo',
+      'should return binance testnet address url',
+    );
   });
 
   describe('getAccountLink', function () {
@@ -93,9 +117,14 @@ describe('account-link', function () {
           },
         },
       ];
-      getAccountLinkTests.forEach(({ expected, address, chainId, rpcPrefs, networkId }) => {
-        assert.strictEqual(getAccountLink(address, chainId, rpcPrefs, networkId), expected);
-      });
+      getAccountLinkTests.forEach(
+        ({ expected, address, chainId, rpcPrefs, networkId }) => {
+          assert.strictEqual(
+            getAccountLink(address, chainId, rpcPrefs, networkId),
+            expected,
+          );
+        },
+      );
     });
   });
 });
@@ -105,12 +134,20 @@ describe('explorer-link', function () {
   describe('by networkId', function () {
     it('should handle mainnet correctly', function () {
       const result = createExplorerLink('foo', '1');
-      assert.strictEqual(result, 'https://etherscan.io/tx/foo', 'should handle mainnet');
+      assert.strictEqual(
+        result,
+        'https://etherscan.io/tx/foo',
+        'should handle mainnet',
+      );
     });
 
     it('should handle goerli correctly', function () {
       const result = createExplorerLink('foo', '5');
-      assert.strictEqual(result, 'https://goerli.etherscan.io/tx/foo', 'should handle goerli');
+      assert.strictEqual(
+        result,
+        'https://goerli.etherscan.io/tx/foo',
+        'should handle goerli',
+      );
     });
 
     it('should have null as a prefix', function () {
@@ -122,12 +159,20 @@ describe('explorer-link', function () {
   describe('by chainId', function () {
     it('should handle mainnet correctly', function () {
       const result = createExplorerLinkForChain('foo', '0x1');
-      assert.strictEqual(result, 'https://etherscan.io/tx/foo', 'should handle mainnet');
+      assert.strictEqual(
+        result,
+        'https://etherscan.io/tx/foo',
+        'should handle mainnet',
+      );
     });
 
     it('should handle goerli correctly', function () {
       const result = createExplorerLinkForChain('foo', '0x5');
-      assert.strictEqual(result, 'https://goerli.etherscan.io/tx/foo', 'should handle goerli');
+      assert.strictEqual(
+        result,
+        'https://goerli.etherscan.io/tx/foo',
+        'should handle goerli',
+      );
     });
 
     it('should have null as a prefix', function () {
@@ -137,8 +182,15 @@ describe('explorer-link', function () {
   });
 
   it('should handle customNetwork url correctly', function () {
-    const result = createCustomExplorerLink('foo', 'https://data-seed-prebsc-1-s1.binance.org:8545');
-    assert.strictEqual(result, 'https://data-seed-prebsc-1-s1.binance.org:8545/tx/foo', 'should return binance testnet transaction url');
+    const result = createCustomExplorerLink(
+      'foo',
+      'https://data-seed-prebsc-1-s1.binance.org:8545',
+    );
+    assert.strictEqual(
+      result,
+      'https://data-seed-prebsc-1-s1.binance.org:8545/tx/foo',
+      'should return binance testnet transaction url',
+    );
   });
 });
 
@@ -151,22 +203,38 @@ describe('token-tracker-link', function () {
   describe('by networkId', function () {
     it('should handle mainnet correctly (no account)', function () {
       const result = createTokenTrackerLink('foo', '1');
-      assert.strictEqual(result, 'https://etherscan.io/token/foo', 'should handle mainnet');
+      assert.strictEqual(
+        result,
+        'https://etherscan.io/token/foo',
+        'should handle mainnet',
+      );
     });
 
     it('should handle goerli correctly (no account)', function () {
       const result = createTokenTrackerLink('foo', '5');
-      assert.strictEqual(result, 'https://goerli.etherscan.io/token/foo', 'should handle goerli');
+      assert.strictEqual(
+        result,
+        'https://goerli.etherscan.io/token/foo',
+        'should handle goerli',
+      );
     });
 
     it('should handle mainnet correctly (account)', function () {
       const result = createTokenTrackerLink('foo', '1', '0xabc');
-      assert.strictEqual(result, 'https://etherscan.io/token/foo?a=0xabc', 'should handle mainnet');
+      assert.strictEqual(
+        result,
+        'https://etherscan.io/token/foo?a=0xabc',
+        'should handle mainnet',
+      );
     });
 
     it('should handle goerli correctly (account)', function () {
       const result = createTokenTrackerLink('foo', '5', '0xabc');
-      assert.strictEqual(result, 'https://goerli.etherscan.io/token/foo?a=0xabc', 'should handle goerli');
+      assert.strictEqual(
+        result,
+        'https://goerli.etherscan.io/token/foo?a=0xabc',
+        'should handle goerli',
+      );
     });
 
     it('should null has a prefix', function () {
@@ -178,22 +246,38 @@ describe('token-tracker-link', function () {
   describe('by chainId', function () {
     it('should handle mainnet correctly (no account)', function () {
       const result = createTokenTrackerLinkForChain('foo', '0x1');
-      assert.strictEqual(result, 'https://etherscan.io/token/foo', 'should handle mainnet');
+      assert.strictEqual(
+        result,
+        'https://etherscan.io/token/foo',
+        'should handle mainnet',
+      );
     });
 
     it('should handle goerli correctly (no account)', function () {
       const result = createTokenTrackerLinkForChain('foo', '0x5');
-      assert.strictEqual(result, 'https://goerli.etherscan.io/token/foo', 'should handle goerli');
+      assert.strictEqual(
+        result,
+        'https://goerli.etherscan.io/token/foo',
+        'should handle goerli',
+      );
     });
 
     it('should handle mainnet correctly (account)', function () {
       const result = createTokenTrackerLinkForChain('foo', '0x1', '0xabc');
-      assert.strictEqual(result, 'https://etherscan.io/token/foo?a=0xabc', 'should handle mainnet');
+      assert.strictEqual(
+        result,
+        'https://etherscan.io/token/foo?a=0xabc',
+        'should handle mainnet',
+      );
     });
 
     it('should handle goerli correctly (account)', function () {
       const result = createTokenTrackerLinkForChain('foo', '0x5', '0xabc');
-      assert.strictEqual(result, 'https://goerli.etherscan.io/token/foo?a=0xabc', 'should handle goerli');
+      assert.strictEqual(
+        result,
+        'https://goerli.etherscan.io/token/foo?a=0xabc',
+        'should handle goerli',
+      );
     });
 
     it('should null has a prefix', function () {
@@ -202,13 +286,19 @@ describe('token-tracker-link', function () {
     });
 
     it('should handle customNetwork url correctly', function () {
-      const result = createCustomTokenTrackerLink('foo', 'https://data-seed-prebsc-1-s1.binance.org:8545/');
-      assert.strictEqual(result, 'https://data-seed-prebsc-1-s1.binance.org:8545/token/foo', 'should return binance testnet token url');
+      const result = createCustomTokenTrackerLink(
+        'foo',
+        'https://data-seed-prebsc-1-s1.binance.org:8545/',
+      );
+      assert.strictEqual(
+        result,
+        'https://data-seed-prebsc-1-s1.binance.org:8545/token/foo',
+        'should return binance testnet token url',
+      );
     });
 
     describe('getTokenTrackerLink', function () {
       it('should return the correct token tracker url based on chainId, networkId and rpcPref args', function () {
-
         const getTokenTrackerTests = [
           {
             expected: 'https://etherscan.io/token/0xabcd',
@@ -267,10 +357,16 @@ describe('token-tracker-link', function () {
           },
         ];
 
-        getTokenTrackerTests.forEach((test) => {
+        getTokenTrackerTests.forEach((trackerTest) => {
           assert.strictEqual(
-            getTokenTrackerLink(test.tokenAddress, test.chainId, test.networkId, test.holderAddress, test.rpcPrefs),
-            test.expected
+            getTokenTrackerLink(
+              trackerTest.tokenAddress,
+              trackerTest.chainId,
+              trackerTest.networkId,
+              trackerTest.holderAddress,
+              trackerTest.rpcPrefs,
+            ),
+            trackerTest.expected,
           );
         });
       });
@@ -278,12 +374,11 @@ describe('token-tracker-link', function () {
   });
 
   /*
- * Test getBlockExplorerLink,
-  * Which applies correct explorer-link generator based on args
-  */
+   * Test getBlockExplorerLink,
+   * Which applies correct explorer-link generator based on args
+   */
   describe('getBlockExplorerLink', function () {
     it('should return the correct block explorer url for an account based on chainId, networkId and rpcPref args', function () {
-
       const getBlockExplorerLinkTests = [
         {
           expected: 'https://etherscan.io/tx/0xabcd',
@@ -361,10 +456,10 @@ describe('token-tracker-link', function () {
         },
       ];
 
-      getBlockExplorerLinkTests.forEach((test) => {
+      getBlockExplorerLinkTests.forEach((linkTest) => {
         assert.strictEqual(
-          getBlockExplorerLink(test.transaction, test.rpcPrefs),
-          test.expected
+          getBlockExplorerLink(linkTest.transaction, linkTest.rpcPrefs),
+          linkTest.expected,
         );
       });
     });
